@@ -1,9 +1,11 @@
-/vendor
-.env
-.env.*
-!.env.example
 .DS_Store
 Thumbs.db
-/flarum
 .vagrant
-/public/flarum
+config.php
+.idea
+vendor
+server
+core
+studio.json
+composer.lock
+

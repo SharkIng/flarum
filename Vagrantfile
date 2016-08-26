@@ -4,11 +4,10 @@
 # Config Github Settings
 github_username = "fideloper"
 github_repo     = "Vaprobash"
-github_branch   = "1.3.0"
+github_branch   = "1.4.2"
 github_url      = "https://raw.githubusercontent.com/#{github_username}/#{github_repo}/#{github_branch}"
 
 # Server Configuration
-
 hostname        = "flarum.dev"
 
 # Set a local private network IP address.
@@ -52,14 +51,15 @@ hhvm                  = "false"
 composer_packages     = [        # List any global Composer packages that you want to install
   #"phpunit/phpunit:4.0.*",
   #"codeception/codeception=*",
-  #"phpspec/phpspec:2.0.*@dev",
-  #"squizlabs/php_codesniffer:1.5.*",
+  "phpspec/phpspec:2.0.*@dev",
+  "squizlabs/php_codesniffer:1.5.*",
+  "franzl/studio:dev-master"
 ]
 
 # Default web server document root
 # Symfony's public directory is assumed "web"
 # Laravel's public directory is assumed "public"
-public_folder         = "/vagrant/public"
+public_folder         = "/vagrant"
 
 laravel_root_folder   = "/vagrant/laravel" # Where to install Laravel. Will `composer install` if a composer.json file exists
 laravel_version       = "latest-stable" # If you need a specific version of Laravel, set it here
@@ -68,7 +68,7 @@ symfony_root_folder   = "/vagrant/symfony" # Where to install Symfony.
 nodejs_version        = "latest"   # By default "latest" will equal the latest stable version
 nodejs_packages       = [          # List any global NodeJS packages that you want to install
   "bower",
-  "ember"
+  "gulp"
 ]
 
 sphinxsearch_version  = "rel22" # rel20, rel21, rel22, beta, daily, stable
@@ -77,7 +77,7 @@ sphinxsearch_version  = "rel22" # rel20, rel21, rel22, beta, daily, stable
 Vagrant.configure("2") do |config|
 
   # Set server to Ubuntu 14.04
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/trusty32"
 
   config.vm.define "Vaprobash" do |vapro|
   end
@@ -251,7 +251,7 @@ Vagrant.configure("2") do |config|
   ##########
 
   # Install Memcached
-  config.vm.provision "shell", path: "#{github_url}/scripts/memcached.sh"
+  # config.vm.provision "shell", path: "#{github_url}/scripts/memcached.sh"
 
   # Provision Redis (without journaling and persistence)
   # config.vm.provision "shell", path: "#{github_url}/scripts/redis.sh"
@@ -266,7 +266,7 @@ Vagrant.configure("2") do |config|
   ##########
 
   # Install Beanstalkd
-  config.vm.provision "shell", path: "#{github_url}/scripts/beanstalkd.sh"
+  # config.vm.provision "shell", path: "#{github_url}/scripts/beanstalkd.sh"
 
   # Install Heroku Toolbelt
   # config.vm.provision "shell", path: "https://toolbelt.heroku.com/install-ubuntu.sh"
@@ -282,7 +282,7 @@ Vagrant.configure("2") do |config|
   ##########
 
   # Install Nodejs
-  config.vm.provision "shell", path: "https://raw.githubusercontent.com/franzliedke/Vaprobash/patch-1/scripts/nodejs.sh", privileged: false, args: nodejs_packages.unshift(nodejs_version, github_url)
+  config.vm.provision "shell", path: "#{github_url}/scripts/nodejs.sh", privileged: false, args: nodejs_packages.unshift(nodejs_version, github_url)
 
   # Install Ruby Version Manager (RVM)
   # config.vm.provision "shell", path: "#{github_url}/scripts/rvm.sh", privileged: false, args: ruby_gems.unshift(ruby_version)
@@ -295,7 +295,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "#{github_url}/scripts/composer.sh", privileged: false, args: composer_packages.join(" ")
 
   # Provision Laravel
-  #config.vm.provision "shell", path: "#{github_url}/scripts/laravel.sh", privileged: false, args: [server_ip, laravel_root_folder, public_folder, laravel_version]
+  # config.vm.provision "shell", path: "#{github_url}/scripts/laravel.sh", privileged: false, args: [server_ip, laravel_root_folder, public_folder, laravel_version]
 
   # Provision Symfony
   # config.vm.provision "shell", path: "#{github_url}/scripts/symfony.sh", privileged: false, args: [server_ip, symfony_root_folder, public_folder]

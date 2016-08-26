@@ -1,32 +1,53 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
-	"license": "MIT",
-	"type": "project",
-	"require": {
-		"laravel/framework": "5.0.*"
-	},
-	"autoload": {
-		"psr-4": {
-			"App\\": "app/"
-		}
-	},
-	"scripts": {
-		"post-install-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize"
-		],
-		"post-update-cmd": [
-			"php artisan clear-compiled",
-			"php artisan optimize"
-		],
-		"post-create-project-cmd": [
-			"php -r \"copy('.env.example', '.env');\"",
-			"php artisan key:generate"
-		]
-	},
-	"config": {
-		"preferred-install": "dist"
-	}
+    "name": "flarum/flarum",
+    "description": "Delightfully simple forum software.",
+    "type": "project",
+    "keywords": ["forum", "discussion"],
+    "homepage": "http://flarum.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Toby Zerner",
+            "email": "toby.zerner@gmail.com"
+        },
+        {
+            "name": "Franz Liedke",
+            "email": "franz@develophp.org"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/flarum/core/issues",
+        "source": "https://github.com/flarum/flarum",
+        "docs": "http://flarum.org/docs"
+    },
+    "require": {
+        "flarum/core": "^0.1.0",
+        "flarum/flarum-ext-akismet": "^0.1.0",
+        "flarum/flarum-ext-approval": "^0.1.0",
+        "flarum/flarum-ext-auth-facebook": "^0.1.0",
+        "flarum/flarum-ext-auth-github": "^0.1.0",
+        "flarum/flarum-ext-auth-twitter": "^0.1.0",
+        "flarum/flarum-ext-bbcode": "^0.1.0",
+        "flarum/flarum-ext-emoji": "^0.1.0",
+        "flarum/flarum-ext-english": "^0.1.0",
+        "flarum/flarum-ext-flags": "^0.1.0",
+        "flarum/flarum-ext-likes": "^0.1.0",
+        "flarum/flarum-ext-lock": "^0.1.0",
+        "flarum/flarum-ext-markdown": "^0.1.0",
+        "flarum/flarum-ext-mentions": "^0.1.0",
+        "flarum/flarum-ext-pusher": "^0.1.0",
+        "flarum/flarum-ext-sticky": "^0.1.0",
+        "flarum/flarum-ext-subscriptions": "^0.1.0",
+        "flarum/flarum-ext-suspend": "^0.1.0",
+        "flarum/flarum-ext-tags": "^0.1.0"
+    },
+    "require-dev": {
+        "franzl/studio": "^0.11.0",
+        "php-pm/psr7-adapter": "dev-master"
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
 }
